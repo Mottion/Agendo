@@ -1,25 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { AuthContextProvider } from './Context/AuthContext';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+
+import GlobalStyle from './GlobalStyle/GlobalStyle';
+
+import AuthPage from './Pages/AuthPage'
+import HomePage from './Pages/HomePage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <AuthContextProvider>
+        <Router>
+
+          <Switch>
+            <Route exact path="/" children={<AuthPage />} />
+            <Route path="/Home" children={<HomePage />} />
+          </Switch>
+        </Router>
+      </AuthContextProvider>
+      <GlobalStyle />
+    </>
   );
 }
 
