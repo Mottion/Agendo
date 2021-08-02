@@ -67,7 +67,6 @@ function DataInput() {
     selectedDay = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), day);
     handleDays();
     setDate(`${selectedDay.getDate()}/${selectedDay.getMonth() + 1}/${selectedDay.getFullYear()}`)
-    console.log(selectedDay);
   }
 
   return (

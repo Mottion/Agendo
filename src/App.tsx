@@ -8,7 +8,7 @@ import { Redirect } from "./Components/Oters/Redirect";
 import { AuthContextProvider } from './Context/AuthContext';
 
 // importaçõo de estilos
-import GlobalStyle from './GlobalStyle/GlobalStyle';
+import GlobalStyle from './Styles/GlobalStyle';
 
 // importação de paginas 
 import AuthPage from './Pages/AuthPage'

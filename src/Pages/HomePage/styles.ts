@@ -38,5 +38,18 @@ export const Container = styled.div`
         font-weight: 500;
       }
     }
+
+    .logout {
+      width: 100%;
+      padding: 5px;
+      
+      margin-top: auto;
+
+      background: var(--black);
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      color: #fff;
+      font-size: 24px;
+    }
   }
 `;
