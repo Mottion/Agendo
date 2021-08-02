@@ -7,8 +7,7 @@ import { Container } from './styles';
 import { Button } from '../../Styles/Button'
 
 function HomePage() {
-  const { user } = useContext(AuthContext);
-
+  const { user, Logout } = useContext(AuthContext);
 
   return (
     <Container>
@@ -21,10 +20,11 @@ function HomePage() {
         <DataInput />
         <Button className="blue">Adicionar Evento</Button>
         <Button className="green">Adicionar Timer</Button>
-        <button className="logout">Sair da Conta</button>
+        <button className="logout" onClick={Logout}>Sair da Conta</button>
       </div>
     </Container>
-  );
+  )
+
 };
 
 export default HomePage;

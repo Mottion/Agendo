@@ -2,7 +2,6 @@
 import { useContext } from 'react';
 
 // importações internas
-import { firebase, provider } from '../../Services/Firebase';
 import { AuthContext } from '../../Context/AuthContext'
 
 // importaçõo de estilos
@@ -11,16 +10,7 @@ import {Twitter, Facebook, Linkedin, Github, Discord, Google} from 'styled-icons
 
 
 function AuthPage() {
-  const {setUser} = useContext(AuthContext);
-
-  async function Login() {
-    const userData: any = await firebase.auth().signInWithPopup(provider);
-    setUser({
-      id: userData.user.uid,
-      name: userData.user.photoURL,
-      avatar: userData.user.displayName,
-    });
-  }
+  const { Login } = useContext(AuthContext);
 
   return (
     <Container>

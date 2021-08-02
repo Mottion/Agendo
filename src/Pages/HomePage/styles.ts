@@ -46,9 +46,11 @@ export const Container = styled.div`
       margin-top: auto;
 
       background: var(--black);
+      color: #fff;
+      cursor: pointer;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
-      color: #fff;
+      font-family: "Roboto";
       font-size: 24px;
     }
   }

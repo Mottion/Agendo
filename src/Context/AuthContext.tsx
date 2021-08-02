@@ -1,6 +1,6 @@
 import { useState,useEffect } from 'react';
 import { createContext } from 'react'
-import { firebase } from '../Services/Firebase';
+import { firebase, provider } from '../Services/Firebase';
 
 type User = {
   id: string,
@@ -11,6 +11,8 @@ type User = {
 type AuthContextProps = {
   user:  User | undefined ,
   setUser: (user: User) => void,
+  Login: () => void;
+  Logout: () => void;
 }
 
 type AuthContextProviderprops = {
@@ -22,6 +24,15 @@ export const AuthContext = createContext({} as AuthContextProps);
 export function AuthContextProvider({children}: AuthContextProviderprops){
   const [user, setUser] = useState<User>();
 
+  async function Login() {
+    const userData: any = await firebase.auth().signInWithPopup(provider);
+    setUser({
+      id: userData.user.uid,
+      name: userData.user.displayName,
+      avatar: userData.user.photoURL,
+    });
+  }
+
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
       if(user){
@@ -30,6 +41,7 @@ export function AuthContextProvider({children}: AuthContextProviderprops){
         if (!displayName || !photoURL){
           throw new Error('Missing information from Google Account');
         }  
+
         setUser({
           id: uid,
           name: displayName,
@@ -41,7 +53,12 @@ export function AuthContextProvider({children}: AuthContextProviderprops){
     return () => {
       unsubscribe();
     }
-  }, [])
+  }, []);
+
+  function Logout() {
+    firebase.auth().signOut();
+    setUser(undefined);
+  } 
 
 
   return (
@@ -49,6 +66,8 @@ export function AuthContextProvider({children}: AuthContextProviderprops){
     value={{
       user,
       setUser,
+      Login,
+      Logout,
     }}
     >
       {children}
