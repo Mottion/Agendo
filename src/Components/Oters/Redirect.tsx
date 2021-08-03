@@ -4,7 +4,7 @@ import { AuthContext } from "../../Context/AuthContext";
 
 
 // esse componente é insivisel, só existe para cuidar do roteamento para que o usuario esteja na Pagina de login
-// se ele não estiver logado, e na Home, se ele estiver logado.(talvez isso seja uma gambiarra ._.) 
+// caso ele não estiver logado, e na Home, caso ele estiver logado.(talvez isso seja uma gambiarra ._.) 
 
 export function Redirect() {
   const { user } = useContext(AuthContext);

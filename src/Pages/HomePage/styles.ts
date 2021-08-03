@@ -10,11 +10,10 @@ export const Container = styled.div`
   .sidebar {
     width: 100%;
     max-width: 350px;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-
     
     background: linear-gradient(90deg, #FF8A00, #E52E71);
 
@@ -53,5 +52,8 @@ export const Container = styled.div`
       font-family: "Roboto";
       font-size: 24px;
     }
+  }
+  &::-webkit-scrollbar { 
+    display: none;
   }
 `;

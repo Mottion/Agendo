@@ -41,7 +41,7 @@ function DataInput() {
       }
     }else{
       for(let i=1; i <= numberOfDaysIntTheSelectedMonth; i++){
-        selectedDays.push(<div  onClick={() => selectDay(i)} key={i} >{i}</div>)
+        selectedDays.push(<div onClick={() => selectDay(i)} key={i} >{i}</div>)
       }
     }
 

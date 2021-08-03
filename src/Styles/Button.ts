@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-export const Button = styled.button`
+export const Button = styled(Link)`
   width: 95%;
   padding: 10px;
   margin: 10px 0;
@@ -20,6 +21,10 @@ export const Button = styled.button`
 
   &.green {
     background: linear-gradient(255.71deg, #0C8102 0.06%, #34CB43 100.38%);
+  }
+
+  &.red {
+    background: linear-gradient(255.71deg, #940F0F 0.06%, #B62E2E 100.38%);
   }
 
   &:hover {
