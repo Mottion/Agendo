@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 import { AuthContext } from '../../Context/AuthContext';
 
@@ -16,8 +17,8 @@ function MainSidebar() {
         <span>{user?.name}</span>
       </div>
       <DataInput />
-      <Button className="blue" to="/Home/Calendar">Adicionar Evento</Button>
-      <Button className="green" to="/">Adicionar Timer</Button>
+      <Button as={Link} className="blue" to="/Home/Calendar">Adicionar Evento</Button>
+      <Button as={Link} className="green" to="/">Adicionar Timer</Button>
     </>
   );
 };

@@ -7,35 +7,42 @@ export const Container = styled.form`
   justify-content: center;
   align-items: center;
 
-  .textarea{
+
+  > label {
+    margin: 10px auto 0 auto;
+
+    color: #fff;
+    font-size: 24px;
+    font-family: "roboto";
+    font-weight: 500;
+  }
+
+  > input {
     width: 95%;
-    margin: 10px auto;
-    display: flex;
-    flex-direction: column;
-  
+    padding: 5px;
+    
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: inset 0px 0px 0px 2px #AEAEAE;
 
-    > label {
-      margin: 0 auto;
+    font-size: 20px;
+    color: var(--black);
+    font-weight: 500;
+    text-align: center;
+  }
 
-      color: #fff;
-      font-size: 24px;
-      font-family: "roboto";
-      font-weight: 500;
-    }
+  > textarea {
+    width: 95%;
+    min-height: 150px;
+    padding: 5px;
+    resize: none;
+    
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: inset 0px 0px 0px 2px #AEAEAE;
 
-    > textarea {
-      width: 100%;
-      min-height: 150px;
-      padding: 5px;
-      resize: none;
-      
-      background: #fff;
-      border-radius: 5px;
-      box-shadow: inset 0px 0px 0px 2px #AEAEAE;
-
-      font-size: 20px;
-      color: var(--black);
-      font-weight: 500;
-    }
+    font-size: 20px;
+    color: var(--black);
+    font-weight: 500;
   }
 `;
