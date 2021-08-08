@@ -11,7 +11,11 @@ function DataInput() {
   const [month, setMonth] = useState(selectedDate.getMonth());
   var [days, setDays] = useState<React.ReactNode[]>([]);
   var {date, setDate, selectedDay} = useContext(CalendarContext);
-  setDate(`${selectedDay.getDate()}/${selectedDay.getMonth() + 1}/${selectedDay.getFullYear()}`) 
+
+  useEffect(() => {
+    setDate(`${selectedDay.getDate()}/${selectedDay.getMonth() + 1}/${selectedDay.getFullYear()}`)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
 
   function handleDays() {
     const SelectLastDayOfTheSelectedMonthe = new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0)
@@ -33,7 +37,7 @@ function DataInput() {
     // colocando os dias anteriores ao mes selecionado
     for(var i = 0; i < amountOfPreviousDays; i++){
       firstDayOfSelectedDay.setDate(firstDayOfSelectedDay.getDate() + 1);
-      selectedDays.push(<div className="otersDays" >{firstDayOfSelectedDay.getDate()}</div>);
+      selectedDays.push(<div key={i + "a"} className="otersDays" >{firstDayOfSelectedDay.getDate()}</div>);
     }
 
     //colocando os dias do mes selecionado
@@ -49,9 +53,10 @@ function DataInput() {
 
     // colocando os dias posteriores ao mes selecionado
     for(i = 1; lastDayOfTheWeek < 6;i++){
-      selectedDays.push(<div className="otersDays" >{i}</div>);
+      selectedDays.push(<div key={i + "b"} className="otersDays" >{i}</div>);
       lastDayOfTheWeek++;
     }
+
     setDays(selectedDays);
   }
 
@@ -65,7 +70,9 @@ function DataInput() {
   }
 
   function selectDay(day: number){
-    selectedDay = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), day);
+    selectedDay.setMonth( selectedDate.getMonth())
+    selectedDay.setFullYear( selectedDate.getFullYear())
+    selectedDay.setDate(day)
     handleDays();
     setDate(`${selectedDay.getDate()}/${selectedDay.getMonth() + 1}/${selectedDay.getFullYear()}`)
   }

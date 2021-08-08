@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import {FormEvent, useState } from 'react';
+import {FormEvent, useContext, useState } from 'react';
+import { CalendarContext } from '../../Context/CalendarContext';
 
 import { Container } from './styles';
 
@@ -10,12 +11,14 @@ function FormCalendar() {
   const [title, setTitle] = useState("")
   const [time, setTime] = useState("");
   const [description, setDescription] = useState("");
+  const {date} = useContext(CalendarContext)
 
   function handleForm(e: FormEvent) {
     e.preventDefault();
     console.log(title);
     console.log(time);
     console.log(description);
+    console.log(date);
   }
 
   return (

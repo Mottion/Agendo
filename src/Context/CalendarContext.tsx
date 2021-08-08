@@ -13,7 +13,7 @@ type CalendarContextProviderprops = {
 export const CalendarContext = createContext({} as CalendarContextProps);
 
 export function CalendarContextProvider({children}: CalendarContextProviderprops){
-  const selectedDay = new Date();
+  const [selectedDay] = useState(new Date());
   const [date, setDate] = useState("")
   
 
@@ -21,7 +21,7 @@ export function CalendarContextProvider({children}: CalendarContextProviderprops
     <CalendarContext.Provider value={{
       date,
       setDate,
-      selectedDay
+      selectedDay,
     }}>
       {children}
     </CalendarContext.Provider>
