@@ -6,6 +6,7 @@ import { AuthContext } from '../../Context/AuthContext';
 import MainSidebar from '../../Components/MainSidebar'
 import FormCalendar from '../../Components/FormCalendar'
 import { Container } from './styles';
+import { CalendarContextProvider } from '../../Context/CalendarContext';
 
 function HomePage() {
   const { Logout } = useContext(AuthContext);
@@ -15,10 +16,12 @@ function HomePage() {
     <Container>
       <main></main>
       <div className="sidebar">
+      <CalendarContextProvider>
         <Switch>
           <Route exact path="/Home/" children={<MainSidebar />} />
           <Route exact path="/Home/Calendar" children={<FormCalendar />} />
         </Switch>
+      </CalendarContextProvider>
         <button className="logout" onClick={Logout}>Sair da Conta</button>
       </div>
     </Container>

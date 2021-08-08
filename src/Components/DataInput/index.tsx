@@ -1,15 +1,17 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+
+import { CalendarContext } from '../../Context/CalendarContext';
 
 import { Container } from './styles';
 import {ArrowheadLeftOutline, ArrowheadRightOutline} from "styled-icons/evaicons-outline"
 
 function DataInput() {
   const [selectedDate] = useState(new Date());
-  var selectedDay = new Date();
   const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
   const [month, setMonth] = useState(selectedDate.getMonth());
   var [days, setDays] = useState<React.ReactNode[]>([]);
-  const [date, setDate] = useState(`${selectedDay.getDate()}/${selectedDay.getMonth() + 1}/${selectedDay.getFullYear()}`)
+  var {date, setDate, selectedDay} = useContext(CalendarContext);
+  setDate(`${selectedDay.getDate()}/${selectedDay.getMonth() + 1}/${selectedDay.getFullYear()}`) 
 
   function handleDays() {
     const SelectLastDayOfTheSelectedMonthe = new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0)
@@ -18,7 +20,7 @@ function DataInput() {
     // para saber que dia da semana o ultimo dia do mes selecionado é
     var lastDayOfTheWeek = SelectLastDayOfTheSelectedMonthe.getDay();
     // para pegar o dia atual
-    let currentDay = selectedDay.getDate();
+    var currentDay = selectedDay.getDate();
     // o array aonde contem os dias: anteriores ao mes selecionado + do mes selecionado + apos o mes selecionado
     var selectedDays = [];
     // o primeiro dia do mes selecionado, com isso, posso saber se o dia 1 é domingo, segundo, terça... e por ai vai, vo usar isso pra ver quantos dias do mes anterior vo precisar colocar no calendario
@@ -50,7 +52,6 @@ function DataInput() {
       selectedDays.push(<div className="otersDays" >{i}</div>);
       lastDayOfTheWeek++;
     }
-
     setDays(selectedDays);
   }
 
