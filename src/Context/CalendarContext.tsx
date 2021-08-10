@@ -1,8 +1,15 @@
 import { createContext, useState } from 'react'
 
+type dateProps = [
+  day: number,
+  month: number,
+  year: number
+]
+
 type CalendarContextProps = {
-  date: string;
-  setDate: (value: string) => void;
+  date: dateProps | never[];
+  // eslint-disable-next-line no-empty-pattern
+  setDate: ([]: any) => void;
   selectedDay: Date;
 }
 
@@ -14,7 +21,7 @@ export const CalendarContext = createContext({} as CalendarContextProps);
 
 export function CalendarContextProvider({children}: CalendarContextProviderprops){
   const [selectedDay] = useState(new Date());
-  const [date, setDate] = useState("")
+  const [date, setDate] = useState([])
   
 
   return (

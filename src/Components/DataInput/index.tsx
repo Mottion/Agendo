@@ -13,7 +13,8 @@ function DataInput() {
   var {date, setDate, selectedDay} = useContext(CalendarContext);
 
   useEffect(() => {
-    setDate(`${selectedDay.getDate()}/${selectedDay.getMonth() + 1}/${selectedDay.getFullYear()}`)
+    setDate([selectedDay.getDate(), selectedDay.getMonth(), selectedDay.getFullYear()])
+    //`${selectedDay.getDate()}/${selectedDay.getMonth() + 1}/${selectedDay.getFullYear()}`
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
@@ -74,7 +75,7 @@ function DataInput() {
     selectedDay.setFullYear( selectedDate.getFullYear())
     selectedDay.setDate(day)
     handleDays();
-    setDate(`${selectedDay.getDate()}/${selectedDay.getMonth() + 1}/${selectedDay.getFullYear()}`)
+    setDate([selectedDay.getDate(), selectedDay.getMonth(), selectedDay.getFullYear()])
   }
 
   return (
@@ -85,7 +86,7 @@ function DataInput() {
         <ArrowheadRightOutline onClick={() => handleMonth(+1)} />
       </div>
       <div className="line"></div>
-      <p className="dateSelected">{date}</p>
+      <p className="dateSelected">{date[0]}/{date[1] + 1}/{date[2]}</p>
       <div className="line"></div>
       <div className="weekday">
         <p>Dom</p>
