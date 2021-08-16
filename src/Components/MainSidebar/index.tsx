@@ -18,7 +18,6 @@ function MainSidebar() {
       </div>
       <DataInput />
       <Button as={Link} className="blue" to="/Home/Calendar">Adicionar Evento</Button>
-      <Button as={Link} className="green" to="/">Adicionar Timer</Button>
     </>
   );
 };

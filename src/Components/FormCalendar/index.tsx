@@ -1,5 +1,6 @@
 import { Link, useHistory } from 'react-router-dom';
 import {FormEvent, useContext, useState } from 'react';
+import InputMask from 'react-input-mask';
 
 import { CalendarContext } from '../../Context/CalendarContext';
 import { AuthContext } from '../../Context/AuthContext';
@@ -22,20 +23,22 @@ function FormCalendar() {
   function handleForm(e: FormEvent) {
     e.preventDefault();
     
-    if(new Date(date[2], date[1], date[0]).getTime() < new Date().getTime())
-    return alert("não marque datas no passado ou datas referentes a hoje")
+    if(new Date(date[2], date[1], date[0], Number(time.replace(/_/g, "0").split(":")[0]), Number(time.replace(/_/g, "0").split(":")[1])).getTime() < new Date().getTime())
+    return alert("não marque datas no passado ou datas referentes a hoje");
 
     db.collection('events').add({
       userID: user?.id,
       eventDate: date,
       eventTitle: title,
-      eventTime: time,
+      eventTime: time.replace(/_/g, "0").split(":"),
+      milliseconds: new Date(date[2], date[1], date[0], Number(time.replace(/_/g, "0").split(":")[0]), Number(time.replace(/_/g, "0").split(":")[1])).getTime(),
       eventDescription: description,
     }).then(() => {console.log("adicionado")})
+    .catch(() => {console.log("error")})
 
     history.push('/Home')
   }
-
+ 
   return (
     <Container onSubmit={handleForm}>
       <DataInput />
@@ -49,22 +52,19 @@ function FormCalendar() {
       />
 
       <label htmlFor="time">Horario</label>
-      <input 
-        name="time" 
-        type="number"
-        value={time}
-        onChange={event => setTime(event.target.value)}
-        min="0"
-        max="2359"
-        required
+      <InputMask 
+      mask={'99:99'}
+      value={time} 
+      onChange={event => setTime(event.target.value)}
+      required
       />
+
 
       <label htmlFor="description">Descrição</label>
       <textarea 
         name="description" 
         value={description}
         onChange={event => setDescription(event.target.value)}
-        required
       />
       <Button className="blue" type="submit" >Adicionar Evento</Button>
       <Button as={Link} to="/Home" className="red">Cancelar</Button>
