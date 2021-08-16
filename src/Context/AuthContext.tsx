@@ -56,7 +56,11 @@ export function AuthContextProvider({children}: AuthContextProviderprops){
   }, []);
 
   function Logout() {
-    firebase.auth().signOut();
+    firebase.auth().signOut().then(() => {
+      console.log("Sign-out successful")
+    }).catch((error) => {
+      console.log("Sign-out with error: " + error)
+    });;
     setUser(undefined);
   } 
 
